@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Викторина</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Экран авторизации -->
+        <div id="authScreen" class="screen active">
+            <h1>🎯 Викторина</h1>
+            <form onsubmit="login(event)">
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Пароль:</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit">Вход</button>
+                <p style="margin-top: 20px; font-size: 0.9em; color: #666;">
+                    Демо: любой email и пароль
+                </p>
+            </form>
+        </div>
+
+        <!-- Экран выбора темы и класса -->
+        <div id="selectScreen" class="screen">
+            <h1>Выберите предмет и класс</h1>
+            
+            <div class="select-wrapper">
+                <div>
+                    <label>Предмет:</label>
+                    <select id="subject" onchange="updateSelection()">
+                        <option value="">-- Выберите предмет --</option>
+                        <option value="russian">Русский язык</option>
+                        <option value="history">История</option>
+                        <option value="kazakh">Казахский язык</option>
+                        <option value="geography">География</option>
+                        <option value="music">Музыка</option>
+                        <option value="math">Математика</option>
+                        <option value="geometry">Геометрия</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label>Класс:</label>
+                    <select id="class" onchange="updateSelection()">
+                        <option value="">-- Выберите класс --</option>
+                        <option value="1">1 класс</option>
+                        <option value="2">2 класс</option>
+                        <option value="3">3 класс</option>
+                        <option value="4">4 класс</option>
+                        <option value="5">5 класс</option>
+                        <option value="6">6 класс</option>
+                        <option value="7">7 класс</option>
+                        <option value="8">8 класс</option>
+                        <option value="9">9 класс</option>
+                        <option value="10">10 класс</option>
+                        <option value="11">11 класс</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button id="startBtn" onclick="startQuiz()" disabled>Начать викторину (20 вопросов)</button>
+            <button class="logout-btn" onclick="logout()">Выход</button>
+        </div>
+
+        <!-- Экран викторины -->
+        <div id="quizScreen" class="screen">
+            <div class="quiz-header">
+                <div class="question-counter" id="counter"></div>
+                <button class="exit-btn" onclick="exitQuiz()">✕</button>
+            </div>
+            
+            <div class="progress-bar">
+                <div id="progress"></div>
+            </div>
+            
+            <div class="quiz-content">
+                <h2 id="question"></h2>
+                <div id="options" class="options"></div>
+            </div>
+        </div>
+
+        <!-- Экран результатов -->
+        <div id="resultScreen" class="screen">
+            <h1>📊 Результаты</h1>
+            <div class="result-info">
+                <div class="result-text" id="resultSubject"></div>
+            </div>
+            
+            <div class="score-circle" id="scoreCircle">
+                <span id="scoreText">0</span>
+            </div>
+            
+            <div class="result-details">
+                <p id="resultMessage"></p>
+                <p id="correctCount"></p>
+            </div>
+            
+            <button onclick="backToSelect()">Выбрать другой предмет</button>
+            <button class="logout-btn" onclick="logout()">Выход</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
